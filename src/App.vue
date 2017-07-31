@@ -3,9 +3,10 @@
     <v-header></v-header>
     <div class="tab">
       <ul class="tab-header">
-        <li>商品</li>
-        <li>详情</li>
-        <li>评价</li>
+        <a href="#/hello" class="">hello</a>
+        <li><router-link to="/goods">商品</router-link></li>
+        <li><router-link to="/seller">详情</router-link></li>
+        <li><router-link to="/ratings">评价</router-link></li>
       </ul>
       <div class="tab-body"></div>
     </div>

@@ -10,22 +10,22 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/hello',
       name: 'Hello',
       component: Hello
     },
     {
-      path: '/',
+      path: '/goods',
       name: 'goods',
       component: goods
     },
     {
-      path: '/',
+      path: '/seller',
       name: 'seller',
       component: seller
     },
     {
-      path: '/',
+      path: '/ratings',
       name: 'ratings',
       component: ratings
     }
