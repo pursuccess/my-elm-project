@@ -22,6 +22,15 @@
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
+    <div class="bulletin-wrapper" @click="">
+      <span class="bulletin-title"></span>
+      <span class="bulletin-text">{{seller.bulletin}}</span>
+      <i class="icon-keyboard_arrow_right"></i>
+    </div>
+    <div class="background">
+      <img :src="seller.avatar" width="100%" height="100%">
+    </div>
+    <div class="detail" v-show="detailShow"></div>
   </div>
 </template>
 
@@ -238,6 +247,11 @@
     props: {
       seller: {
         type: Object
+      }
+    },
+    data() {
+      return {
+        detailShow: false
       }
     },
     /*computed: {//此种方法也可以
