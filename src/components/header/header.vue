@@ -17,7 +17,7 @@
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
-      <div v-if="seller.supports" class="support-count" @click="">
+      <div v-if="seller.supports" class="support-count" @click="showDetail">
         <span class="count">{{seller.supports.length}}个</span>
         <i class="icon-keyboard_arrow_right"></i>
       </div>
@@ -30,12 +30,12 @@
     <div class="background">
       <img :src="seller.avatar" width="100%" height="100%">
     </div>
-    <div class="detail" v-show="detailShow">
+    <div class="detail" v-show="detailShow" transition="fade">
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
           <h1 class="name">{{seller.name}}</h1>
           <div class="star-wrapper">
-
+            <star :size="48" :score="seller.score"></star>
           </div>
           <div class="title">
             <div class="line"></div>
@@ -64,6 +64,41 @@
     </div>
   </div>
 </template>
+
+<script>
+  import star from 'components/star/star';
+  export default {
+    props: {
+      seller: {
+        type: Object
+      }
+    },
+    data() {
+      return {
+        detailShow: true
+      }
+    },
+    methods: {
+      showDetail() {
+        this.detailShow = true;
+      },
+      hideDetail() {
+        this.detailShow = false;
+      }
+    },
+    /*computed: {//此种方法也可以
+      classMap: function () {
+        return ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+      }
+    }*/
+    created() {
+      this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+    },
+    components: {
+      star
+    }
+  }
+</script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixin";
@@ -272,28 +307,5 @@
         clear: both
         font-size: 32px
 </style>
-
-<script>
-  export default {
-    props: {
-      seller: {
-        type: Object
-      }
-    },
-    data() {
-      return {
-        detailShow: true
-      }
-    },
-    /*computed: {//此种方法也可以
-      classMap: function () {
-        return ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
-      }
-    }*/
-    created() {
-      this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
-    }
-  }
-</script>
 
 
