@@ -30,6 +30,7 @@
         else {
           this.food.count++;
         }
+        this.$emit('add',event.target);//触发父组件"goods"监听的add事件
       },
       decreaseCart(event) {
         if (!event._constructed) {
