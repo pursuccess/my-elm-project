@@ -38,6 +38,7 @@
       </ul>
     </div>
     <shopcart ref="shopcart" :selectFoods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <food :food="selectedFood" @add="addFood" ref="food"></food>
   </div>
 </template>
 
@@ -45,6 +46,7 @@
   import BScroll from 'better-scroll';
   import shopcart from 'components/shopcart/shopcart';
   import cartcontrol from 'components/cartcontrol/cartcontrol';
+  import food from 'components/food/food';
   const ERR_OK = 0;
   export default {
     props: {
@@ -57,6 +59,7 @@
         goods: [],
         listHeight: [],
         scrollY: 0,
+        selectedFood: {},
       };
     },
     computed: {
@@ -129,6 +132,13 @@
           this.listHeight.push(height);
         }
       },
+      selectFood(food,event) {
+        if (!event._constructed) {
+          return;
+        }
+        this.selectedFood = food;
+        this.$refs.food.show();
+      },
       addFood(target) {
         this._drop(target);
       },
@@ -141,7 +151,8 @@
     },
     components: {
       shopcart,
-      cartcontrol
+      cartcontrol,
+      food
     }
   }
 </script>
