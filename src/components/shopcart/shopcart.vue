@@ -27,25 +27,27 @@
           </transition>
         </div>
       </div>
-      <div class="shopcart-list" v-show="listShow">
-        <div class="list-header">
-          <h1 class="title">购物车</h1>
-          <span class="empty" @click="empty">清空</span>
+      <transition name="fold">
+        <div class="shopcart-list" v-show="listShow">
+          <div class="list-header">
+            <h1 class="title">购物车</h1>
+            <span class="empty" @click="empty">清空</span>
+          </div>
+          <div class="list-content" ref="listContent">
+            <ul>
+              <li class="food" v-for="food in selectFoods">
+                <span class="name">{{food.name}}</span>
+                <div class="price">
+                  <span>￥{{food.price*food.count}}</span>
+                </div>
+                <div class="cartcontrol-wrapper">
+                  <cartcontrol @add="addFood" :food="food"></cartcontrol>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="list-content" ref="listContent">
-          <ul>
-            <li class="food" v-for="food in selectFoods">
-              <span class="name">{{food.name}}</span>
-              <div class="price">
-                <span>￥{{food.price*food.count}}</span>
-              </div>
-              <div class="cartcontrol-wrapper">
-                <cartcontrol @add="addFood" :food="food"></cartcontrol>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
+      </transition>
     </div>
     <transition name="fade">
       <div class="list-mask" @click="hideList" v-show="listShow"></div>
@@ -217,6 +219,9 @@
           return;
         }
         window.alert(`支付${this.totalPrice}元`);
+      },
+      addFood(target) {
+        this.drop(target);
       },
     },
     components: {
