@@ -77,7 +77,9 @@
     },
     methods: {
       show() {
-        this.showFlag = true
+        this.showFlag = true;
+        this.selectType = All;
+        this.onlyContent = false;
         this.$nextTick(() => {
           if (!this.scroll) {
             this.scroll = new BScroll(this.$refs.food, {
