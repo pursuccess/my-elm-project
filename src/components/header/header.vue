@@ -2,7 +2,7 @@
   <div class="header">
     <div class="content-wrapper">
       <div class="avatar">
-        <img width="64" height="64" :src="seller.avatar">
+        <img width="64" height="64" :src="avatar">
       </div>
       <div class="content">
         <div class="title">
@@ -69,15 +69,18 @@
 
 <script>
   import star from 'components/star/star';
+  //import avatar from 'components/header/avatar.jpg';
   export default {
     props: {
       seller: {
         type: Object
-      }
+      },
     },
     data() {
       return {
-        detailShow: false
+        detailShow: false,
+        //avatar: avatar  //引入图片，结合import avatar使用
+        avatar: require('./avatar.jpg') //引入图片
       }
     },
     methods: {
