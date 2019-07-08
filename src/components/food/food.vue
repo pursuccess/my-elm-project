@@ -31,7 +31,7 @@
           <ratingselect :selectType="selectType" :onlyContent="onlyContent" :desc="desc" :ratings="food.ratings" @select="selectRating" @toggle="toggleContent"></ratingselect>
           <div class="rating-wrapper">
             <ul v-show="food.ratings && food.ratings.length">
-              <li v-for="rating in food.ratings" v-show="needShow(rating.rateType,rating.text)" class="rating-item border-1px">
+              <li v-for="(rating, index) in food.ratings" :key="index" v-show="needShow(rating.rateType,rating.text)" class="rating-item border-1px">
                 <div class="user">
                   <span class="name">{{rating.username}}</span>
                   <img class="avatar" width="12" height="12" :src="rating.avatar">
